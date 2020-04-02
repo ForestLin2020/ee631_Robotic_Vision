@@ -37,7 +37,7 @@ while True:
     matches = flann.knnMatch(des_image,des_grayframe, k=2)
     good_points = []
     for m, n in matches:
-        if m.distance < 0.5*n.distance:         # !!! ask more detail about how distance charge the match level
+        if m.distance < 0.5*n.distance:         
             good_points.append(m)
 
     # draw matches points
@@ -77,6 +77,8 @@ while True:
     key = cv2.waitKey(1)
     if key == 27:
         break
+    elif key =='s':
+        cv2.imwrite('')
 
 cv2.release()
 cv2.destroyAllWindows()
