@@ -15,12 +15,9 @@ focal_length = fsx * 7.4e-6 * 1000  # (micro/pixel) * 1000 = milli >> mm
 # {} << .format(name of value)
 print('focal length in mm = {} mm'.format(focal_length))
 
-x_prime = 0
-x = 0
+
 frame_list = []
 Z_list = []
-tau_list = []
-
 def distance(x_pixel):
 
     Z = fsx * 59 / x_pixel
@@ -81,26 +78,9 @@ while True:
         homography = cv2.polylines(frame, [np.int32(distort_pts)], True, (255, 0, 0), 3)
         print('Width(x) in pixel = ',np.int32(distort_pts)[3][0][0]-np.int32(distort_pts)[0][0][0])
         x_pixel = np.int32(distort_pts)[3][0][0]-np.int32(distort_pts)[0][0][0]
-        # distance(x_pixel)
-        if frame_number == 0:
-            x = x_pixel
-            print('x',x)
-            print('-----------------------------')
+        distance(x_pixel)
 
 
-
-        if frame_number > 0:
-
-            x_prime = x_pixel
-            print('x_prime',x_prime)
-            print('x',x)
-            a = x_prime / x
-            tau = a / (a-1)
-            print('a',a)
-            print('tau',tau)
-            tau_list.append(tau)
-            print('-----------------------------')
-            x = x_prime
 
         cv2.imshow('Homography', homography)
 
@@ -119,31 +99,29 @@ while True:
         break
 
 # plot estimate graphic
-x = np.linspace(0, 51, 17)
-z = np.array(tau_list)
-print('xtype',x.shape)
-print('ztype',z.shape)
-plt.xlabel('Frame Number')
-plt.ylabel('Time to impact (tau)')
+x = np.array(frame_list)
+z = np.array(Z_list)
 
-# points
+# Points
 plt.plot(x, z, '.')
 
-# Regression Line (only in points)
-# m, b = np.polyfit(x, z, 1)
-# plt.plot(x, m*x + b)
+# Regression Curve Line
+# x_coeff = np.polyfit(z, x, 3)
+# p = np.poly1d(x_coeff)
+# zp = np.linspace(600, 0, 100)
+# plt.plot(p(zp),zp,  '-')
 
 # Regression Line (extension out of points)
 coefficients = np.polyfit(x, z, 1)
 polynomial = np.poly1d(coefficients)
-x_axis = np.linspace(0,90,100)
+x_axis = np.linspace(0,130,100)
 y_axis = polynomial(x_axis)
 plt.plot(x_axis, y_axis)
 
 
-# plt.axis([-5, 100, -5, 100])
-# plt.xlim(-5, 100)
-# plt.ylim(-5, 100)
+
+plt.xlabel('Frame Number')
+plt.ylabel('Distance in mm')
 plt.grid()
 
 plt.show()

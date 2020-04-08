@@ -20,6 +20,7 @@ x = 0
 frame_list = []
 Z_list = []
 tau_list = []
+estimate_distance_list = []
 
 def distance(x_pixel):
 
@@ -96,9 +97,12 @@ while True:
             print('x',x)
             a = x_prime / x
             tau = a / (a-1)
+            # Velocity = 15.25 mm / frame
+            estimate_distance = tau * 15.25
             print('a',a)
             print('tau',tau)
             tau_list.append(tau)
+            estimate_distance_list.append(estimate_distance)
             print('-----------------------------')
             x = x_prime
 
@@ -120,11 +124,11 @@ while True:
 
 # plot estimate graphic
 x = np.linspace(0, 51, 17)
-z = np.array(tau_list)
+z = np.array(estimate_distance_list)
 print('xtype',x.shape)
 print('ztype',z.shape)
 plt.xlabel('Frame Number')
-plt.ylabel('Time to impact (tau)')
+plt.ylabel('Distance in mm')
 
 # points
 plt.plot(x, z, '.')
