@@ -133,11 +133,11 @@ plt.ylabel('Distance in mm')
 # points
 plt.plot(x, z, '.')
 
-# Regression Line (only in points)
+# Regression Liner Line (only in points)
 # m, b = np.polyfit(x, z, 1)
 # plt.plot(x, m*x + b)
 
-# Regression Line (extension out of points)
+# Regression Liner Line (extension out of points)
 coefficients = np.polyfit(x, z, 1)
 polynomial = np.poly1d(coefficients)
 x_axis = np.linspace(0,90,100)

@@ -129,11 +129,11 @@ plt.ylabel('Time to impact (tau)')
 # points
 plt.plot(x, z, '.')
 
-# Regression Line (only in points)
+# Regression Liner Line (only in points)
 # m, b = np.polyfit(x, z, 1)
 # plt.plot(x, m*x + b)
 
-# Regression Line (extension out of points)
+# Regression Liner Line (extension out of points)
 coefficients = np.polyfit(x, z, 1)
 polynomial = np.poly1d(coefficients)
 x_axis = np.linspace(0,90,100)
@@ -141,9 +141,6 @@ y_axis = polynomial(x_axis)
 plt.plot(x_axis, y_axis)
 
 
-# plt.axis([-5, 100, -5, 100])
-# plt.xlim(-5, 100)
-# plt.ylim(-5, 100)
 plt.grid()
 
 plt.show()

@@ -111,7 +111,7 @@ plt.plot(x, z, '.')
 # zp = np.linspace(600, 0, 100)
 # plt.plot(p(zp),zp,  '-')
 
-# Regression Line (extension out of points)
+# Regression Liner Line (extension out of points)
 coefficients = np.polyfit(x, z, 1)
 polynomial = np.poly1d(coefficients)
 x_axis = np.linspace(0,130,100)
