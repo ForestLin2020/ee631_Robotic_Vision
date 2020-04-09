@@ -127,7 +127,7 @@ x = np.linspace(0, 51, 17)
 z = np.array(estimate_distance_list)
 print('xtype',x.shape)
 print('ztype',z.shape)
-plt.xlabel('Frame Number')
+plt.xlabel('Frame Number (3 frame = 1 image)')
 plt.ylabel('Distance in mm')
 
 # points

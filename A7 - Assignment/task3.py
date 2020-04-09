@@ -114,13 +114,13 @@ plt.plot(x, z, '.')
 # Regression Liner Line (extension out of points)
 coefficients = np.polyfit(x, z, 1)
 polynomial = np.poly1d(coefficients)
-x_axis = np.linspace(0,130,100)
+x_axis = np.linspace(0,130,17)
 y_axis = polynomial(x_axis)
 plt.plot(x_axis, y_axis)
 
 
 
-plt.xlabel('Frame Number')
+plt.xlabel('Frame Number (3 frame = 1 image)')
 plt.ylabel('Distance in mm')
 plt.grid()
 

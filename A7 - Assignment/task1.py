@@ -87,10 +87,7 @@ while True:
             print('x',x)
             print('-----------------------------')
 
-
-
         if frame_number > 0:
-
             x_prime = x_pixel
             print('x_prime',x_prime)
             print('x',x)
@@ -103,7 +100,6 @@ while True:
             x = x_prime
 
         cv2.imshow('Homography', homography)
-
 
     cv2.imshow('matches_result', matches_result)
 
@@ -123,7 +119,7 @@ x = np.linspace(0, 51, 17)
 z = np.array(tau_list)
 print('xtype',x.shape)
 print('ztype',z.shape)
-plt.xlabel('Frame Number')
+plt.xlabel('Frame Number (3 frame = 1 image)')
 plt.ylabel('Time to impact (tau)')
 
 # points
